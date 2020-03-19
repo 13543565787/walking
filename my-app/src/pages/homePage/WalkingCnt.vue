@@ -2,15 +2,18 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:34:15
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-19 15:58:38
+ * @LastEditTime: 2020-03-19 19:43:25
  * @Description: 地图 高精度和逆解析（用于没有权限的）
  -->
 <template>
-  <div class="LoginPage_wrapper">
+  <div class="Walking_wrapper">
     <h2>行走</h2>
     <div id="container"></div>
 
-    <div class="hoverTips">{{ txt }}</div>
+    <div class="hoverTips">
+
+      {{ txt }}
+    </div>
   </div>
 </template>
 
@@ -72,7 +75,7 @@ export default {
           maximumAge: 0, //定位结果缓存0毫秒，默认：0
           convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
           showButton: true, //显示定位按钮，默认：true
-          buttonPosition: "RB", //定位按钮停靠位置，默认：'LB'，左下角
+          buttonPosition: "LT", //定位按钮停靠位置，默认：'LB'，左下角
           buttonOffset: new AMap.Pixel(10, 70), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
           showMarker: true, //定位成功后在定位到的位置显示点标记，默认：true
           showCircle: true, //定位成功后用圆圈表示定位精度范围，默认：true
@@ -193,10 +196,17 @@ export default {
 </script>
 
 <style scoped lang="less">
-.LoginPage_wrapper {
+.Walking_wrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
   #container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1; // 级别最低
     width: 100%;
-    height: calc(100vh - 60px);
+    height: 100%;
   }
   .hoverTips {
     position: fixed;
