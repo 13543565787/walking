@@ -2,8 +2,8 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:34:15
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-19 14:21:19
- * @Description: 地图
+ * @LastEditTime: 2020-03-19 15:58:38
+ * @Description: 地图 高精度和逆解析（用于没有权限的）
  -->
 <template>
   <div class="LoginPage_wrapper">
@@ -24,8 +24,8 @@ export default {
           this.locationData.lat +
           "|" +
           this.locationData.lon +
-          "|" +
-          this.isLocateMsg
+          "|" + this.locationData.address + "|" +
+          this.isLocateMsg 
         );
       } else {
         return this.isLocateMsg;
@@ -34,34 +34,37 @@ export default {
   },
   data() {
     return {
-      // lng: 113.397219, // 经度
-      // lat: 23.065121, // 维度
       locationData: {
         // 用于定位相关信息提交
         lat: "", // 纬度
         lon: "", // 经度
-        province: "", // 省
-        city: "", // 市
-        district: "", // 区 县
-        nowPlace: "", // 省-市-区
-        Address: "" // 详细地址
+        address: "", // 精准定位
       },
       map: {}, // map对象
       markers: [], // 点标记
-
-      isLocateMsg: "定位信息"
+      isLocateMsg: "定位信息",
     };
   },
   methods: {
     init() {
-      const _thisSelf = this;
-      _thisSelf.map = new AMap.Map("container", {
+      // 设置、获取地图中心点（setCenter、getCenter）
+      // 设置、获取地图缩放级别（setZoom、getZoom）
+      // let position = [110.4702652,21.2543418];
+      // _thisSelf.map.setCenter(position); // 简写 var lnglat = [116, 39];
+      this.map = new AMap.Map("container", {
         zoom: 16, //级别
-        center: [113.397219, 23.065121], //中心点坐标 TODO:广外
+        // center: [113.397219, 23.065121], //中心点坐标 TODO:广外 不要这个，会自动定位到城市中心
         viewMode: "3D", //使用3D视图
         resizeEnable: true
       });
-      // 定位
+      this.getLocation(); // TODO:获取精准定位
+      // this.getLngLatLocation(); // TODO:这个是无法获得精准定位情况下，用IP获取
+      // 绑定事件
+      TODO: this.map.on("click", this.markHandle);
+    },
+    // 获取定位信息
+    getLocation() {
+      const _thisSelf = this;
       AMap.plugin("AMap.Geolocation", function() {
         var geolocation = new AMap.Geolocation({
           enableHighAccuracy: true, //是否使用高精度定位，默认:true
@@ -70,7 +73,7 @@ export default {
           convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
           showButton: true, //显示定位按钮，默认：true
           buttonPosition: "RB", //定位按钮停靠位置，默认：'LB'，左下角
-          buttonOffset: new AMap.Pixel(10, 50), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+          buttonOffset: new AMap.Pixel(10, 70), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
           showMarker: true, //定位成功后在定位到的位置显示点标记，默认：true
           showCircle: true, //定位成功后用圆圈表示定位精度范围，默认：true
           panToLocation: true, //定位成功后将定位到的位置作为地图中心点，默认：true
@@ -85,8 +88,12 @@ export default {
 
         function onComplete(data) {
           // data是具体的定位信息
-          _thisSelf.newGetAddress(data.position.lat, data.position.lng);
-          console.log("!!!!定位成功");
+          // 更新当前的位置信息
+          _thisSelf.locationData.lat = data.position.lat;
+          _thisSelf.locationData.lon = data.position.lng;
+          
+          // 转换为详细地址
+          _thisSelf.regeocoder(data.position);
           _thisSelf.isLocateMsg = "定位成功";
         }
 
@@ -98,9 +105,6 @@ export default {
           _thisSelf.getLngLatLocation();
         }
       });
-
-      // 绑定事件
-      _thisSelf.map.on("click", this.markHandle);
     },
     // IP定位获取当前城市信息
     getLngLatLocation() {
@@ -108,14 +112,36 @@ export default {
       AMap.plugin("AMap.CitySearch", function() {
         var citySearch = new AMap.CitySearch();
         citySearch.getLocalCity(function(status, result) {
+          //自动获取用户IP，返回当前城市
           if (status === "complete" && result.info === "OK") {
             // 查询成功，result即为当前所在城市信息
-             if (result && result.city && result.bounds) {
-               _thisSelf.isLocateMsg = "ok!!!"
-               _thisSelf.isLocateMsg = result ;
-             }
-          }else{
-            _thisSelf.isLocateMsg = "定位失败，可以更换浏览器试一试！" ;
+            if (result && result.city && result.bounds) {
+              _thisSelf.isLocateMsg = "无法精准定位，如果需要可以更换浏览器";
+              var lnglat = result.rectangle.split(";")[0].split(",");
+              // 转化为详细地址！
+              _thisSelf.regeocoder(lnglat);
+            }
+          } else {
+            _thisSelf.isLocateMsg = "定位失败，可以更换浏览器试一试！";
+          }
+        });
+      });
+    },
+    //逆地理编码，讲经纬度转化为详细地址
+    regeocoder(position) {
+      const _thisSelf = this;
+      // position是一个数组，或者对象
+      AMap.plugin("AMap.Geocoder", function() {
+        var geocoder = new AMap.Geocoder({
+          city: "全国",
+          radius: 1000, //逆地理编码时，以给定坐标为中心点，单位：米
+          extensions: "base" //返回基本地址信息
+        });
+        geocoder.getAddress(position, function(status, result) {
+          if (status === "complete" && result.info === "OK") {
+            // result为对应的地理位置详细信息
+            let address = result.regeocode.formattedAddress; //返回地址描述
+            _thisSelf.locationData.address = address;
           }
         });
       });
@@ -148,22 +174,16 @@ export default {
       // 将创建的点标记添加到已有的地图实例：
       marker.on("click", this.clearMarker, this);
       this.markers.push(marker);
-      console.log(this.markers);
     },
     // 清除指定点
     clearMarker(e) {
       let _amap_id = e.target._amap_id;
       this.markers.forEach((item, index) => {
         if (item._amap_id == _amap_id) {
-          console.log("!!!二次点击取消");
           this.markers[index].setMap(null);
           this.markers[index].off("click", this.clearMarker, this);
         }
       });
-    },
-    newGetAddress(latitude, longitude) {
-      this.locationData.lat = latitude;
-      this.locationData.lon = longitude;
     }
   },
   mounted() {
