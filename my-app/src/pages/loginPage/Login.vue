@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:22:15
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-20 14:31:02
+ * @LastEditTime: 2020-03-20 17:16:29
  * @Description: 
  -->
 <template>
@@ -51,12 +51,15 @@
         <img :src="loginImg" alt />
       </button>
 
+      <!-- <button class="register_btn" @click="loginHandle" :disabled="!isLogin" :class="{active:isLogin}">
+        <p style="display:none">登录</p>
+        <img :src="loginImg" alt />
+      </button> -->
+
       <div class="register_wrapper" :to="{name:'register'}">
         <span class="register_tip">没有账号可 </span>
         <router-link tag="a" class="register_btn" :to="{name:'register'}">免费注册</router-link>
       </div>
-      <div class="hover">{{ clientHeight }}</div>
-      <div class="hover">{{ hover_tip }}</div>
     </div>
   </div>
 </template>
@@ -71,8 +74,6 @@ export default {
       bgImg: require("../../assets/img/login/firstPage.jpg"),
       loginImg: require("../../assets/img/login/login.png"),
       name: "",
-      clientHeight: "",
-      hover_tip: "", // 参数信息
       isTop: "", // 登录框是否置顶
 
       username: "", // input的用户名
@@ -86,7 +87,7 @@ export default {
   methods: {
     focusHandle(index) {
       this.isTop = true;
-      console.log("focus" + index);
+      // console.log("focus" + index);
       if (index === 1) {
         this.$refs.username_input.placeholder = "";
         if (!!this.username) {
@@ -161,7 +162,9 @@ export default {
       }
     }
   },
-  computed: {},
+  computed: {
+    // isTop(){}
+  },
   mounted() {}
 };
 </script>
