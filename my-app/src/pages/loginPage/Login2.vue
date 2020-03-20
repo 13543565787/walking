@@ -1,14 +1,14 @@
 <!--
  * @Autor: hjz
- * @Date: 2020-03-18 18:22:22
+ * @Date: 2020-03-18 18:22:15
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-20 17:35:57
+ * @LastEditTime: 2020-03-20 17:16:29
  * @Description: 
  -->
 <template>
   <div class="Login_wrapper">
     <!-- <div class="top_wrapper" :style="{backgroundImage:`url(${bgImg})`}"> -->
-
+    
     <div class="top_wrapper">
       <div class="logo_wrapper">
         <img :src="logoImg" alt />
@@ -18,14 +18,33 @@
     <div class="login_content" :class="{active:isTop}">
       <div class="title">行走,欢迎您!</div>
       <div class="tips">请登录进入行走主页</div>
-      <InputItem
-        v-for="(item) in loginInputs"
-        :key="item.inputId"
-        :placeholder="item.placeholder"
-        :inputType="item.inputType"
-        :inputId="item.inputId"
-        @inputHandle="getInputValue"
-      ></InputItem>
+      <p class="input_wrapper">
+        <input
+          type="text"
+          class="username"
+          v-model="username"
+          @focus="focusHandle(1)"
+          @blur="blurHandle(1)"
+          @input="changeHandle(1)"
+          placeholder="username"
+          ref="username_input"
+        />
+        <i class="username_icon" @click="deleteHandle(1)" :class="{active:username_icon}"></i>
+      </p>
+
+      <p class="input_wrapper">
+        <input
+          type="password"
+          class="password"
+          v-model="password"
+          @focus="focusHandle(2)"
+          @blur="blurHandle(2)"
+          @input="changeHandle(2)"
+          placeholder="password"
+          ref="password_input"
+        />
+        <i class="password_icon" @click="deleteHandle(2)" :class="{active:password_icon}"></i>
+      </p>
 
       <button class="login_btn" @click="loginHandle" :disabled="!isLogin" :class="{active:isLogin}">
         <p style="display:none">登录</p>
@@ -35,12 +54,10 @@
       <!-- <button class="register_btn" @click="loginHandle" :disabled="!isLogin" :class="{active:isLogin}">
         <p style="display:none">登录</p>
         <img :src="loginImg" alt />
-      </button>-->
-
-      <div>{{ isLogin }}</div>
+      </button> -->
 
       <div class="register_wrapper" :to="{name:'register'}">
-        <span class="register_tip">没有账号可</span>
+        <span class="register_tip">没有账号可 </span>
         <router-link tag="a" class="register_btn" :to="{name:'register'}">免费注册</router-link>
       </div>
     </div>
@@ -48,38 +65,92 @@
 </template>
 
 <script>
-import InputItem from "@/components/widget/InputItem.vue";
 export default {
-  components: {
-    InputItem
-  },
+  components: {},
   data() {
     return {
       bgImg: require("../../assets/img/login/firstPage.jpg"),
       logoImg: require("../../assets/img/login/logo.png"),
       bgImg: require("../../assets/img/login/firstPage.jpg"),
       loginImg: require("../../assets/img/login/login.png"),
-      loginInputs: [
-        {
-          inputId: "username",
-          inputType: "text",
-          placeholder: "username"
-        },
-        {
-          inputId: "confirm_password",
-          inputType: "password",
-          placeholder: "confirm password"
-        },
-        {
-          inputId: "password",
-          inputType: "password",
-          placeholder: "password"
-        }
-      ],
-      inputMsgs: {}
+      name: "",
+      isTop: "", // 登录框是否置顶
+
+      username: "", // input的用户名
+      password: "", // input的密码
+      username_icon: false, // 展示删除键
+      password_icon: false, // 展示删除键
+
+      isLogin: false // 判断是否可以登录
     };
   },
   methods: {
+    focusHandle(index) {
+      this.isTop = true;
+      // console.log("focus" + index);
+      if (index === 1) {
+        this.$refs.username_input.placeholder = "";
+        if (!!this.username) {
+          this.username_icon = true;
+        }
+      } else {
+        this.$refs.password_input.placeholder = "";
+        if (!!this.password) {
+          this.password_icon = true;
+        }
+      }
+    },
+    blurHandle(index) {
+      // console.log("blur" + index);
+      this.isTop = false;
+      if (index === 1) {
+        this.$refs.username_input.placeholder = "username";
+        this.username_icon = false;
+      } else {
+        this.$refs.password_input.placeholder = "password";
+        this.password_icon = false;
+      }
+    },
+    changeHandle(index) {
+      // console.log("this.username", this.username);
+      if (index === 1) {
+        if (this.username) {
+          this.username_icon = true;
+          if (this.password) {
+            // 逻辑是在用户名和密码都同时存在时候，才允许登录
+            this.isLogin = true; // 允许登录
+          } else {
+            this.isLogin = false; // 不允许登录
+          }
+        } else {
+          this.username_icon = false;
+          this.isLogin = false; // 不允许登录
+        }
+      } else {
+        if (this.password) {
+          this.password_icon = true;
+          console.log("!!!!登录");
+          if (this.username) {
+            // 逻辑是在用户名和密码都同时存在时候，才允许登录
+            this.isLogin = true; // 允许登录
+          } else {
+            this.isLogin = false; // 不允许登录
+          }
+        } else {
+          this.password_icon = false;
+          this.isLogin = false; // 不允许登录
+        }
+      }
+    },
+    deleteHandle(index) {
+      if (index === 1) {
+        this.username = "";
+        this.$refs.username_input.focus();
+      } else {
+        this.password = "";
+        this.$refs.password_input.focus();
+      }
+    },
     loginHandle() {
       console.log("点击");
       if (this.isLogin) {
@@ -89,41 +160,10 @@ export default {
           this.$router.push({ name: "walking" });
         }
       }
-    },
-    getInputValue(value) {
-      // 根据不同的回传inputId进行区分！
-
-      let { inputId } = value;
-      // inputMsgs是对象！！！！vue监听不到属性值的变化！！
-      this.$set(this.inputMsgs, inputId, { ...value });
-      // console.log("this.inputMsgs", this.inputMsgs);
     }
   },
   computed: {
-    isTop() {
-      let flag = false;
-      Object.keys(this.inputMsgs).forEach(item => {
-        if (!!this.inputMsgs[item].isFocus) {
-          flag = true;
-        }
-      });
-      return flag;
-    },
-    isLogin() {
-      let flag = true;
-      if (Object.keys(this.inputMsgs).length < this.loginInputs.length) {
-        return false;
-      }
-      Object.keys(this.inputMsgs).forEach(item => {
-        // console.log(this.inputMsgs[item].inputValue);
-        if (!this.inputMsgs[item].inputValue) {
-          console.log("true");
-          // flag = flag && true;
-          flag = false;
-        }
-      });
-      return flag;
-    }
+    // isTop(){}
   },
   mounted() {}
 };
@@ -286,7 +326,7 @@ export default {
       .register_btn {
         font-size: 19px;
         // text-decoration: underline;
-        border-bottom: 1px solid #007ef9;
+        border-bottom:1px solid #007ef9;
         padding: 4px 0;
         color: #007ef9;
       }

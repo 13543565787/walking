@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 17:54:20
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-18 19:02:02
+ * @LastEditTime: 2020-03-20 19:40:35
  * @Description: 路由
  */
 import Vue from 'vue'
@@ -12,7 +12,6 @@ import VueRouter from 'vue-router'
 // 登录界面
 const LoginPage = resolve => require(["@/pages/loginPage/LoginPage.vue"],resolve)
 const Login = resolve => require(["@/pages/loginPage/Login.vue"],resolve)
-const Register = resolve => require(["@/pages/loginPage/Register.vue"],resolve)
 const FirstPage = resolve => require(["@/pages/loginPage/FirstPage.vue"],resolve)
 // // 主内容模块
 const Home = resolve => require(["@/pages/homePage/Home.vue"],resolve)
@@ -46,11 +45,6 @@ const routes = [
         path:'/loginPage/login',
         name:'login',
         component:Login,
-      },
-      {
-        path:'/loginPage/register',
-        name:'register',
-        component:Register,
       },
       {
         path: '/loginPage*',
