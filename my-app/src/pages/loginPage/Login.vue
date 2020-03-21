@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:22:22
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-21 11:49:10
+ * @LastEditTime: 2020-03-21 20:52:32
  * @Description: 登录注册框！
  -->
 <template>
@@ -270,12 +270,15 @@ export default {
     align-items: center;
     // visibility: hidden;
     opacity: 0;
+    // 启动GPU硬件加速器
     transform: translateZ(0px);
+    -webkit-transform: translateZ(0px);
     transition: opacity 0.4s ease-in-out,transform 0.7s ease-in-out;
+    -webkit-transition: opacity 0.4s ease-in-out,transform 0.7s ease-in-out;
     &.selected {
       // 指定当前选中的界面
-      transform: translateZ(0px);
       transform: translateX(0);
+      -webkit-transform: translateX(0);
       opacity: 1;
       visibility: visible;
     }
