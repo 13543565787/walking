@@ -2,8 +2,8 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:22:22
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-20 19:45:40
- * @Description: 
+ * @LastEditTime: 2020-03-21 11:49:10
+ * @Description: 登录注册框！
  -->
 <template>
   <div class="Login_wrapper">
@@ -16,56 +16,61 @@
       <h3>{{ isRegister?"Sign Up":"Sign In" }}</h3>
     </div>
 
-    <!-- 登录界面 -->
-    <div class="login_content" :class="{active:!isRegister&&isTop,selected:!isRegister}">
-      <div class="title">行走,欢迎您!</div>
-      <div class="tips">请登录进入行走主页</div>
-      <InputItem
-        v-for="(item) in loginInputs"
-        :key="item.inputId"
-        :placeholder="item.placeholder"
-        :inputType="item.inputType"
-        :inputId="item.inputId"
-        @inputHandle="getLoginInputValue"
-      ></InputItem>
+    <div class="content_wrapper">
+      <!-- 登录界面 -->
+      <div class="login_content" :class="{active:!isRegister&&isTop,selected:!isRegister}">
+        <div class="title">行走,欢迎您!</div>
+        <div class="tips">请登录进入行走主页</div>
+        <InputItem
+          v-for="(item) in loginInputs"
+          :key="item.inputId"
+          :placeholder="item.placeholder"
+          :inputType="item.inputType"
+          :inputId="item.inputId"
+          @inputHandle="getLoginInputValue"
+        ></InputItem>
 
-      <button
-        class="login_btn"
-        @click="loginHandle"
-        :disabled="!isLogin"
-        :class="{active:!isRegister&&isLogin}"
-      >
-        <p style="display:none">登录</p>
-        <img :src="loginImg" alt />
-      </button>
+        <button
+          class="login_btn"
+          @click="loginHandle"
+          :disabled="!isLogin"
+          :class="{active:!isRegister&&isLogin}"
+        >
+          <p style="display:none">登录</p>
+          <img :src="loginImg" alt />
+        </button>
 
-      <div class="register_wrapper" :to="{name:'register'}">
-        <span class="register_tip">没有账号可</span>
-        <button class="register_link" @click="register_traggle">免费注册</button>
+        <div class="register_wrapper" :to="{name:'register'}">
+          <span class="register_tip">没有账号可</span>
+          <button class="register_link" @click="register_traggle">免费注册</button>
+        </div>
       </div>
-    </div>
 
-    <!-- 注册界面 -->
-    <div class="register_content" :class="{active:isRegister&&isTop,selected:isRegister}">
-      <div class="title">行走,欢迎您!</div>
-      <div class="tips">请先注册自己的账号</div>
-      <InputItem
-        v-for="(item) in registerInputs"
-        :key="item.inputId"
-        :placeholder="item.placeholder"
-        :inputType="item.inputType"
-        :inputId="item.inputId"
-        @inputHandle="getRegisterInputValue"
-      ></InputItem>
+      <!-- 注册界面 -->
+      <div class="register_content" :class="{active:isRegister&&isTop,selected:isRegister}">
+        <div class="title">行走,欢迎您!</div>
+        <div class="tips">请先注册自己的账号</div>
+        <InputItem
+          v-for="(item) in registerInputs"
+          :key="item.inputId"
+          :placeholder="item.placeholder"
+          :inputType="item.inputType"
+          :inputId="item.inputId"
+          @inputHandle="getRegisterInputValue"
+        ></InputItem>
 
-      <button
-        class="register_btn"
-        @click="register_traggle"
-        :disabled="!isLogin"
-        :class="{active:isRegister&&isLogin}"
-      >
-        立即注册
-      </button>
+        <button
+          class="register_btn"
+          @click="register_traggle"
+          :disabled="!isLogin"
+          :class="{active:isRegister&&isLogin}"
+        >立即注册</button>
+        
+        <div class="toLogin">
+          已经有帐号
+          <button @click="register_traggle">直接登录</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -124,10 +129,7 @@ export default {
       console.log("点击");
       if (this.isLogin) {
         // 在允许登录的时候，才执行函数
-        if (this.username == "aaa" && this.password == "123") {
-          console.log("!!登录成功!!");
-          this.$router.push({ name: "walking" });
-        }
+        this.$router.push({ name: "walking" });
       }
     },
     getLoginInputValue(value) {
@@ -190,7 +192,12 @@ export default {
       return flag;
     }
   },
-  mounted() {}
+  mounted() {
+    let {isRegister} = this.$route.params;
+    if(isRegister){
+      this.isRegister = true;
+    }
+  }
 };
 </script>
 
@@ -209,7 +216,8 @@ export default {
 .Login_wrapper {
   width: 100%;
   height: 100%;
-
+  position: relative;
+  overflow: hidden;
   .top_wrapper {
     width: 100%;
     height: 170px;
@@ -240,11 +248,19 @@ export default {
       color: #fafafa;
     }
   }
-  
+  .content_wrapper {
+    width: 100%;
+    height: calc(100% - 170px);
+    overflow: hidden;
+  }
+
   // 登录界面
-  .login_content,.register_content {
+  .login_content,
+  .register_content {
     position: absolute;
     top: 170px;
+    left: 0px;
+    z-index: 9;
     width: 100%;
     height: calc(100% - 170px);
     background-color: #fafafa;
@@ -252,10 +268,16 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.7s ease-in-out;
+    // visibility: hidden;
+    opacity: 0;
+    transform: translateZ(0px);
+    transition: opacity 0.4s ease-in-out,transform 0.7s ease-in-out;
     &.selected {
       // 指定当前选中的界面
+      transform: translateZ(0px);
       transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
     }
     &.active {
       transform: translateY(-170px);
@@ -292,7 +314,7 @@ export default {
         height: 34px;
       }
     }
-    .register_btn{
+    .register_btn {
       margin-top: 24px;
       width: 270px;
       height: 46px;
@@ -301,8 +323,17 @@ export default {
       color: #fafafa;
       font-size: 21px;
       letter-spacing: 3px;
-      &.active{
+      &.active {
         background-color: #1c82d4;
+      }
+    }
+    .toLogin{
+      margin-top: 24px;
+      font-size: 14px;
+      button{
+        font-size: 17px;
+        color: #1c82d4;
+        border-bottom: 1px solid #1c82d4;
       }
     }
     .register_wrapper {
@@ -326,9 +357,8 @@ export default {
   .login_content {
     transform: translateX(-100%);
   }
-  .register_content{
+  .register_content {
     transform: translateX(100%);
   }
-
 }
 </style>

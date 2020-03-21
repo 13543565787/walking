@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:48:51
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-19 21:23:02
+ * @LastEditTime: 2020-03-21 11:13:10
  * @Description: 
  -->
 <template>
@@ -18,7 +18,7 @@
       </div>
       <div class="btn_wrapper">
         <router-link tag="button" class="login_btn" :to="{name:'login'}">登录/LOGIN</router-link>
-        <router-link tag="button" class="register_btn" :to="{name:'register'}">立即注册</router-link>
+        <router-link tag="button" class="register_btn" :to="{name:'login',params:{isRegister:true}}">立即注册</router-link>
       </div>
     </div>
   </div>
