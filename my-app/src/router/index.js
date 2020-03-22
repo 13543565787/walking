@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 17:54:20
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-20 19:40:35
+ * @LastEditTime: 2020-03-22 13:43:45
  * @Description: 路由
  */
 import Vue from 'vue'
@@ -10,14 +10,14 @@ import VueRouter from 'vue-router'
 
 // @ is an alias to /src
 // 登录界面
-const LoginPage = resolve => require(["@/pages/loginPage/LoginPage.vue"],resolve)
-const Login = resolve => require(["@/pages/loginPage/Login.vue"],resolve)
-const FirstPage = resolve => require(["@/pages/loginPage/FirstPage.vue"],resolve)
+const LoginPage = resolve => require(["@/pages/loginPage/LoginPage.vue"], resolve)
+const Login = resolve => require(["@/pages/loginPage/Login.vue"], resolve)
+const FirstPage = resolve => require(["@/pages/loginPage/FirstPage.vue"], resolve)
 // // 主内容模块
-const Home = resolve => require(["@/pages/homePage/Home.vue"],resolve)
-const WalkingCnt = resolve => require(["@/pages/homePage/WalkingCnt.vue"],resolve)
-const WritingCnt = resolve => require(["@/pages/homePage/WritingCnt.vue"],resolve)
-const AboutCnt = resolve => require(["@/pages/homePage/AboutCnt.vue"],resolve)
+const Home = resolve => require(["@/pages/homePage/home/Home.vue"], resolve)
+const WalkingCnt = resolve => require(["@/pages/homePage/WalkingCnt.vue"], resolve)
+const CmtsCnt = resolve => require(["@/pages/homePage/CmtsCnt.vue"], resolve)
+const AboutCnt = resolve => require(["@/pages/homePage/aboutCnt/AboutCnt.vue"], resolve)
 
 
 Vue.use(VueRouter)
@@ -27,36 +27,36 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect : '/loginPage',
+    redirect: '/loginPage',
     component: LoginPage,
   },
   {
-    path:'/loginPage',
-    name:'loginPage',
-    component:LoginPage,
-    children:[
-      
+    path: '/loginPage',
+    name: 'loginPage',
+    component: LoginPage,
+    children: [
+
       {
-        path:'/loginPage',
-        name:'firstPage',
-        component:FirstPage,
+        path: '/loginPage',
+        name: 'firstPage',
+        component: FirstPage,
       },
       {
-        path:'/loginPage/login',
-        name:'login',
-        component:Login,
+        path: '/loginPage/login',
+        name: 'login',
+        component: Login,
       },
       {
         path: '/loginPage*',
-        redirect : '/loginPage',
+        redirect: '/loginPage',
       },
     ]
   },
   {
     path: '/home',
-    redirect : '/home/walking',
+    redirect: '/home/walking',
     component: Home,
-    children:[
+    children: [
       {
         path: '/home/walking',
         name: 'walking',
@@ -64,10 +64,10 @@ const routes = [
         component: WalkingCnt,
       },
       {
-        path: '/home/writing',
-        name: 'writing',
+        path: '/home/comments',
+        name: 'comments',
         meta: { title: "行走-移动端" },
-        component: WritingCnt,
+        component: CmtsCnt,
       },
       {
         path: '/home/about',
@@ -77,13 +77,13 @@ const routes = [
       },
       {
         path: '/home*',
-        redirect : '/home/walking',
+        redirect: '/home/walking',
       },
     ]
   },
   {
     path: '*',
-    redirect : '/loginPage',
+    redirect: '/loginPage',
   }
 ]
 
@@ -92,6 +92,11 @@ const router = new VueRouter({
   // base: process.env.BASE_URL,
   routes
 })
+// 解决重复点击导航路由报错
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+}
 
 // router.beforeEach((to, from, next) => {
 //   /* 路由发生变化修改页面title */

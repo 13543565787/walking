@@ -2,12 +2,12 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:34:15
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-19 19:43:25
+ * @LastEditTime: 2020-03-22 12:49:43
  * @Description: 地图 高精度和逆解析（用于没有权限的）
  -->
 <template>
   <div class="Walking_wrapper">
-    <h2>行走</h2>
+    <!-- <h2>行走</h2> -->
     <div id="container"></div>
 
     <div class="hoverTips">
@@ -198,12 +198,8 @@ export default {
 <style scoped lang="less">
 .Walking_wrapper {
   width: 100%;
-  height: 100vh;
-  position: relative;
+  height: 100%;
   #container {
-    position: absolute;
-    left: 0px;
-    top: 0px;
     z-index: 1; // 级别最低
     width: 100%;
     height: 100%;

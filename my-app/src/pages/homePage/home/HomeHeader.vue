@@ -1,15 +1,14 @@
 <!--
  * @Autor: hjz
- * @Date: 2020-03-18 18:34:21
+ * @Date: 2020-03-22 11:28:12
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-18 19:00:57
+ * @LastEditTime: 2020-03-22 12:52:27
  * @Description: 
  -->
+
 <template>
-  <div class="LoginPage_wrapper">
-    <h2>
-        写动态
-    </h2>
+  <div class="HomeHeader_wrapper">
+    <div class="content"></div>
   </div>
 </template>
 
@@ -32,5 +31,11 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+.HomeHeader_wrapper{
+  background-color: #ccc;
+  position: relative;
+  z-index: 999;
+  width: 100%;
+  height: 44px;
+}
 </style>
