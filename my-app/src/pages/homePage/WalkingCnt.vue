@@ -2,17 +2,23 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:34:15
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-22 12:49:43
+ * @LastEditTime: 2020-03-22 15:46:00
  * @Description: 地图 高精度和逆解析（用于没有权限的）
  -->
 <template>
   <div class="Walking_wrapper">
-    <!-- <h2>行走</h2> -->
     <div id="container"></div>
-
-    <div class="hoverTips">
-
-      {{ txt }}
+    <div class="hover_tips">
+      <div class="locate_msg">
+        <div>
+          <span>定位信息：</span>
+          {{ isLocateMsg }}
+        </div>
+        <div>
+          <span>当前定位：</span>
+          {{ locationData.address }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,32 +26,18 @@
 <script>
 export default {
   components: {},
-  computed: {
-    txt() {
-      if (this.locationData && this.locationData.lat) {
-        return (
-          this.locationData.lat +
-          "|" +
-          this.locationData.lon +
-          "|" + this.locationData.address + "|" +
-          this.isLocateMsg 
-        );
-      } else {
-        return this.isLocateMsg;
-      }
-    }
-  },
+  computed: {},
   data() {
     return {
       locationData: {
         // 用于定位相关信息提交
         lat: "", // 纬度
         lon: "", // 经度
-        address: "", // 精准定位
+        address: "" // 精准定位
       },
       map: {}, // map对象
       markers: [], // 点标记
-      isLocateMsg: "定位信息",
+      isLocateMsg: "定位信息"
     };
   },
   methods: {
@@ -94,7 +86,7 @@ export default {
           // 更新当前的位置信息
           _thisSelf.locationData.lat = data.position.lat;
           _thisSelf.locationData.lon = data.position.lng;
-          
+
           // 转换为详细地址
           _thisSelf.regeocoder(data.position);
           _thisSelf.isLocateMsg = "定位成功";
@@ -199,15 +191,38 @@ export default {
 .Walking_wrapper {
   width: 100%;
   height: 100%;
+  position: relative;
   #container {
     z-index: 1; // 级别最低
     width: 100%;
     height: 100%;
   }
-  .hoverTips {
-    position: fixed;
-    right: 0px;
+  .hover_tips {
+    position: absolute;
+    width: 170px;
+    box-sizing: border-box;
+    padding: 7px 10px;
+    border-radius: 14px;
+    height: auto;
+    right: 4px;
     top: 55px;
+    z-index: 99;
+    font-size: 14px;
+    background-color: #fff;
+    .locate_msg {
+      color: #141414;
+      div {
+        width: 100%;
+        min-height: 21px;
+        word-wrap: break-word;
+        line-height: 1.5;
+        font-size: 12px;
+        text-decoration: underline;
+        span {
+          float: left;
+        }
+      }
+    }
   }
 }
 </style>
