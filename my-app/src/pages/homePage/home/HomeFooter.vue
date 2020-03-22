@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-22 11:28:48
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-22 13:45:44
+ * @LastEditTime: 2020-03-22 13:48:11
  * @Description: 
  -->
 
@@ -52,14 +52,11 @@ export default {
   },
   methods: {
     navHandle(index) {
-      console.log(index);
       this.curIndex = index;
     },
     setCurIndex(index) {
-      console.log("!!!");
       this.$store.dispatch("setCurCntIndexFun", index);
       this.$router.push({ name: this.nav_list[index].to });
-      console.log(this.$store.state.curCntIndex);
     }
   },
   computed: {

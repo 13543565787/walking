@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:09:10
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-22 12:52:11
+ * @LastEditTime: 2020-03-22 14:30:11
  * @Description: 主页盒子，包含三大模块
  -->
 <template>
@@ -44,7 +44,7 @@ export default {
   .content {
     width: 100%;
     min-height: 100%;
-    padding: 44px 0;
+    padding: 45px 0 46px;
     box-sizing: border-box;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
