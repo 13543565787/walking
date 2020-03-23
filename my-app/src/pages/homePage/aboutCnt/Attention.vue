@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 16:03:12
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 17:05:44
+ * @LastEditTime: 2020-03-23 17:44:14
  * @Description: 
  -->
 <template>
@@ -29,31 +29,31 @@ export default {
       isAttention: false,
       menber_list: [
         {
-          name: "孟德-曹操",
+          name: "用户1",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic1.jpg"),
           vip: true,
           gender: 1
         },
         {
-          name: "仲达-司马懿",
+          name: "用户2",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic2.jpg"),
           vip: true,
           gender: 0
         },
         {
-          name: "文和-贾诩",
+          name: "用户3",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic3.jpg"),
           vip: true,
           gender: 1
         },
         {
-          name: "文若-荀彧",
+          name: "用户4",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic4.jpg"),
           vip: false,
           gender: 2
         },
         {
-          name: "奉孝-郭嘉",
+          name: "用户5",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic5.jpg"),
           vip: true,
           gender: 1
