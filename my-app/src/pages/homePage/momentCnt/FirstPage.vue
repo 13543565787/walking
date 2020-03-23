@@ -2,12 +2,12 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:30
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 21:21:07
+ * @LastEditTime: 2020-03-23 23:45:53
  * @Description: 首页是动态！！！
  -->
 <template>
   <div class="MomentCnt_wrapper">
-    <h2>动态1</h2>
+    <h2>全部动态</h2>
     <ul class="moment_list">
       <li class="list_item" v-for="(item,index) in moment_list" :key="index">
         <div class="item_wrapper">
@@ -46,6 +46,9 @@
       </li>
     </ul>
     <div class="bottom">已经到底了哦^_^</div>
+    <router-link tag="button" class="to_compose" :to="{name:'compose'}">
+      <img :src="linkImg" alt="">
+    </router-link>
   </div>
 </template>
 
@@ -126,7 +129,8 @@ export default {
       femaleImg: require("../../../assets/img/home/aboutCnt/attention/female.png"),
       vipImg: require("../../../assets/img/home/aboutCnt/attention/vip.png"),
       likeImg: require("../../../assets/img/home/momentCnt/like.png"),
-      commentImg: require("../../../assets/img/home/momentCnt/comment.png")
+      commentImg: require("../../../assets/img/home/momentCnt/comment.png"),
+      linkImg: require("../../../assets/img/home/momentCnt/link.png"),
     };
   },
   methods: {},
@@ -139,6 +143,13 @@ export default {
 .MomentCnt_wrapper {
   width: 100%;
   height: auto;
+  h2{
+    padding: 14px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #ddd;
+    color: #444;
+  }
   ul.moment_list {
     width: 100%;
     display: flex;
@@ -261,6 +272,22 @@ export default {
     color: #141414;
     letter-spacing: 2px;
     text-align: center;
+  }
+  .to_compose{
+    position: fixed;
+    bottom: 84px;
+    right: 14px;
+    background-color: #1793eb;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    opacity: 0.94;
+    box-shadow: 0 6px 30px 0 rgba(38, 88, 187, 0.28);
+    img{
+      width: 34px;
+      height: 34px;
+      // padding: 7px;
+    }
   }
 }
 </style>
