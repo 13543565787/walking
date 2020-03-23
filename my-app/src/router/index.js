@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 17:54:20
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 12:15:18
+ * @LastEditTime: 2020-03-23 16:20:19
  * @Description: 路由
  */
 import Vue from 'vue'
@@ -22,6 +22,8 @@ const AboutCnt = resolve => require(["@/pages/homePage/aboutCnt/AboutCnt.vue"], 
 const AboutFirstPage = resolve => require(["@/pages/homePage/aboutCnt/FirstPage.vue"], resolve)
 const Footprint = resolve => require(["@/pages/homePage/aboutCnt/Footprint.vue"], resolve)
 const Moment = resolve => require(["@/pages/homePage/aboutCnt/Moment.vue"], resolve)
+const Feedback = resolve => require(["@/pages/homePage/aboutCnt/Feedback.vue"], resolve)
+const Attention = resolve => require(["@/pages/homePage/aboutCnt/Attention.vue"], resolve)
 
 Vue.use(VueRouter)
 
@@ -100,6 +102,18 @@ const routes = [
             component: Footprint,
           },
           {
+            path: '/home/about/feedback',
+            name: 'feedback',
+            meta: { title: "行走-帮助与反馈" },
+            component: Feedback,
+          },
+          {
+            path: '/home/about/attention',
+            name: 'attention',
+            meta: { title: "行走-帮助与反馈" },
+            component: Attention,
+          },
+          {
             path: '/home/about*',
             redirect: '/home/about/firstPage',
           },
@@ -131,7 +145,7 @@ VueRouter.prototype.push = function push(location) {
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
-    console.log(to.meta.title);
+    // console.log(to.meta.title);
     document.title = to.meta.title
   }
   next();

@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-21 23:24:00
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 11:59:34
+ * @LastEditTime: 2020-03-23 14:42:41
  * @Description: 个人中心的头部
  -->
 <template>
@@ -43,7 +43,7 @@ export default {
 .AboutHeader_wrapper {
   width: 100%;
   height: 100px;
-  border-bottom: 1px solid #ccc;
+  box-shadow: 0px 1px 0px #ccc;
   background-color: #fff;
   position: relative;
   .about_msgs_wrapper {

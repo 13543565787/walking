@@ -2,39 +2,22 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:37:51
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 12:00:42
+ * @LastEditTime: 2020-03-23 15:07:00
  * @Description: 
  -->
 <template>
   <div class="AboutCnt_wrapper">
     <AboutHeader></AboutHeader>
     <router-view class="content"></router-view>
-    <!-- <ul class="traggle_list">
-      <li class="traggle_item">
-        <FirstPage></FirstPage>
-      </li>
-      <li class="traggle_item">
-        <Footprint></Footprint>
-      </li>
-      <li class="traggle_item">
-        <Moment></Moment>
-      </li>
-    </ul> -->
   </div>
 </template>
 
 <script>
 import AboutHeader from "@/pages/homePage/aboutCnt/AboutHeader";
-// import FirstPage from "@/pages/homePage/aboutCnt/FirstPage";
-// import Footprint from "@/pages/homePage/aboutCnt/Footprint";
-// import Moment from "@/pages/homePage/aboutCnt/Moment";
 
 export default {
   components: {
-    AboutHeader,
-    // FirstPage,
-    // Footprint,
-    // Moment,
+    AboutHeader
   },
   data() {
     return {};
@@ -48,10 +31,10 @@ export default {
 <style scoped lang="less">
 .AboutCnt_wrapper {
   position: relative;
-  .content{
-    background-color: #fafafa;
+  background-color: #fafafa;
+  .content {
     box-sizing: border-box;
-    padding-top: 14px;
+    height: 100%;
   }
 }
 </style>
