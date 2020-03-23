@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-21 23:24:00
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 00:31:27
+ * @LastEditTime: 2020-03-23 11:59:34
  * @Description: 个人中心的头部
  -->
 <template>
@@ -20,14 +20,6 @@
         <h4 class="detail_txt">简介：It's meant to be!</h4>
       </div>
     </div>
-    <ul class="item_list">
-      <li v-for="(item,index) in about_list" :key="index" class="list_item">
-        <div class="item_wrapper">
-          <div class="number">{{ item.number }}</div>
-          <div class="tab">{{ item.tab }}</div>
-        </div>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -36,11 +28,6 @@ export default {
   components: {},
   data() {
     return {
-      about_list: [
-        { tab: "关注", number: "645" },
-        { tab: "粉丝", number: "11454" },
-        { tab: "足迹", number: "64514" }
-      ],
       aboutImg: require("../../../assets/img/home/profileImg.jpg"),
       genderImg: require("../../../assets/img/home/gender.png"),
       menberImg: require("../../../assets/img/home/menber.png"),
@@ -55,14 +42,10 @@ export default {
 <style scoped lang="less">
 .AboutHeader_wrapper {
   width: 100%;
-  height: 150px;
+  height: 100px;
   border-bottom: 1px solid #ccc;
-  // background-color: #aaaaaa;
   background-color: #fff;
-  position: absolute;
-  top: 45px;
-  left: 0;
-  z-index: 99; // 如果需要隐藏header，可以调整直接覆盖!!!
+  position: relative;
   .about_msgs_wrapper {
     width: 100%;
     height: 100px;
@@ -121,36 +104,6 @@ export default {
         font-weight: normal;
         font-size: 14px;
         color: #444;
-      }
-    }
-  }
-  .item_list {
-    width: 100%;
-    height: auto;
-    margin-bottom: 14px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    .list_item {
-      flex: 1;
-      margin-right: -1px;
-      border-right: 1px solid #aaa;
-      &:last-child {
-        border-right: none;
-      }
-      .item_wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        .number {
-          font-size: 15px;
-          color: #111;
-        }
-        .tab {
-          font-size: 14px;
-          color: #141414;
-        }
       }
     }
   }
