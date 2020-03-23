@@ -2,14 +2,21 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:11:18
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 11:20:22
- * @Description: 查看动态的界面，TODO:需要很好的复用性！！！
+ * @LastEditTime: 2020-03-23 20:07:32
+ * @Description: 查看动态的界面，
  -->
 <template>
-  <div class="CmtsCnt_wrapper">
+  <div class="Moment_wrapper">
     <h2>
-        写动态
+        我的动态
     </h2>
+    <ul class="moment_list">
+      <li class="list_item">
+        <div class="item_wrapper">
+
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -32,7 +39,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.CmtsCnt_wrapper{
-  height: 200vh;
+.Moment_wrapper{
+
 }
 </style>

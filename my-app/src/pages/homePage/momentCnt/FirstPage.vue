@@ -1,15 +1,16 @@
 <!--
  * @Autor: hjz
- * @Date: 2020-03-18 18:34:21
+ * @Date: 2020-03-23 19:49:30
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-22 12:07:25
- * @Description: 
+ * @LastEditTime: 2020-03-23 20:07:24
+ * @Description: 首页是动态！！！
  -->
 <template>
-  <div class="CmtsCnt_wrapper">
+  <div class="MomentCnt_wrapper">
     <h2>
-        写动态
+        动态1
     </h2>
+    <ul class="moment_list"></ul>
   </div>
 </template>
 
@@ -32,7 +33,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.CmtsCnt_wrapper{
+.MomentCnt_wrapper{
   height: 200vh;
 }
 </style>

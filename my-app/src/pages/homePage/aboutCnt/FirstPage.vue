@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:10:28
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 16:17:13
+ * @LastEditTime: 2020-03-23 19:46:15
  * @Description: 个人主页的首页
  -->
 <template>
@@ -51,7 +51,7 @@ export default {
       ],
       link_list: [
         {
-          title: "全部动态",
+          title: "我的动态",
           img: require("../../../assets/img/home/aboutCnt/moment.png"),
           to: 'moment'
         },

@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 17:54:20
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 16:20:19
+ * @LastEditTime: 2020-03-23 20:01:21
  * @Description: 路由
  */
 import Vue from 'vue'
@@ -16,8 +16,12 @@ const LoginFirstPage = resolve => require(["@/pages/loginPage/FirstPage.vue"], r
 // // 主内容模块
 const Home = resolve => require(["@/pages/homePage/home/Home.vue"], resolve)
 const WalkingCnt = resolve => require(["@/pages/homePage/WalkingCnt.vue"], resolve)
-const CmtsCnt = resolve => require(["@/pages/homePage/CmtsCnt.vue"], resolve)
+const MomentCnt = resolve => require(["@/pages/homePage/momentCnt/MomentCnt.vue"], resolve)
 const AboutCnt = resolve => require(["@/pages/homePage/aboutCnt/AboutCnt.vue"], resolve)
+// 动态模版
+const MomentFirstPage = resolve => require(["@/pages/homePage/momentCnt/FirstPage.vue"], resolve)
+const Compose = resolve => require(["@/pages/homePage/momentCnt/Compose.vue"], resolve)
+
 // 个人主页模块
 const AboutFirstPage = resolve => require(["@/pages/homePage/aboutCnt/FirstPage.vue"], resolve)
 const Footprint = resolve => require(["@/pages/homePage/aboutCnt/Footprint.vue"], resolve)
@@ -71,10 +75,25 @@ const routes = [
         component: WalkingCnt,
       },
       {
-        path: '/home/comments',
-        name: 'comments',
-        meta: { title: "行走-评论" },
-        component: CmtsCnt,
+        path: '/home/moment',
+        name: 'moment',
+        meta: { title: "行走-动态主页" },
+        redirect: '/home/moment/firstPage',
+        component: MomentCnt,
+        children:[
+          {
+            path: '/home/moment/firstPage',
+            name: 'momentFirstPage',
+            meta: { title: "行走-动态主页" },
+            component: MomentFirstPage,
+          },
+          {
+            path: '/home/moment/compose',
+            name: 'compose',
+            meta: { title: "行走-写动态" },
+            component: Compose,
+          },
+        ]
       },
       {
         path: '/home/about',

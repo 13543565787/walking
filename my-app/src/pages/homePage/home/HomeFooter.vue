@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-22 11:28:48
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-22 15:17:52
+ * @LastEditTime: 2020-03-23 19:39:00
  * @Description: 
  -->
 
@@ -38,9 +38,9 @@ export default {
           img: require("../../../assets/img/nav/map.png")
         },
         {
-          title: "写动态",
-          to: "comments",
-          img: require("../../../assets/img/nav/comment.png")
+          title: "动态",
+          to: "moment",
+          img: require("../../../assets/img/nav/moment.png")
         },
         {
           title: "我的",
