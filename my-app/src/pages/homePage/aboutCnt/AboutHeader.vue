@@ -2,22 +2,22 @@
  * @Autor: hjz
  * @Date: 2020-03-21 23:24:00
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 14:42:41
+ * @LastEditTime: 2020-03-24 17:21:22
  * @Description: 个人中心的头部
  -->
 <template>
   <div class="AboutHeader_wrapper">
     <div class="about_msgs_wrapper">
       <div class="img_wrapper">
-        <img :src="aboutImg" alt />
-        <img :src="menberImg" class="menber" alt="">
+        <img :src="userImg" alt />
+        <img :src="menberImg" class="menber" alt />
       </div>
       <div class="detail_wrapper">
         <h3 class="username">
-          <span>何处惹尘埃</span>
+          <span>{{username}}</span>
           <img :src="genderImg" alt />
         </h3>
-        <h4 class="detail_txt">简介：It's meant to be!</h4>
+        <h4 class="detail_txt">{{detail}}</h4>
       </div>
     </div>
   </div>
@@ -32,6 +32,11 @@ export default {
       genderImg: require("../../../assets/img/home/gender.png"),
       menberImg: require("../../../assets/img/home/menber.png"),
     };
+  },
+  props: {
+    username: { default: "何处惹尘埃" },
+    userImg: { default: require("../../../assets/img/home/profileImg.jpg") },
+    detail: { default: "简介：It's meant to be!" }
   },
   methods: {},
   computed: {},
@@ -65,7 +70,7 @@ export default {
         height: 100%;
         border-radius: 50%;
       }
-      .menber{
+      .menber {
         border-radius: 50%;
         background-color: #d81e06;
 

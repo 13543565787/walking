@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 16:03:12
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 17:44:14
+ * @LastEditTime: 2020-03-24 17:13:45
  * @Description: 
  -->
 <template>
@@ -10,12 +10,12 @@
     <h2>{{ isAttention ? "关注列表":"粉丝列表"}}</h2>
     <ul class="menber_list">
       <li class="list_item" v-for="(item,index) in menber_list" :key="index">
-        <div class="item_wrapper">
+        <router-link :to="{name:'onemoment',params:{username:item.name,userImg:item.picture,detail:item.detail}}" tag="div" class="item_wrapper">
           <img class="pic_img" :src="item.picture" alt />
           <span class="name">{{ item.name }}</span>
           <img class="gender_img" :src="item.gender == 1? maleImg:femaleImg" alt />
           <img class="vip_img" v-show="item.vip" :src="vipImg" alt />
-        </div>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -32,31 +32,36 @@ export default {
           name: "用户1",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic1.jpg"),
           vip: true,
-          gender: 1
+          gender: 1,
+          detail:"新的一天新的开始！人生前方总有希望！"
         },
         {
           name: "用户2",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic2.jpg"),
           vip: true,
-          gender: 0
+          gender: 0,
+          detail:"新的一天新的开始！人生前方总有希望！"
         },
         {
           name: "用户3",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic3.jpg"),
           vip: true,
-          gender: 1
+          gender: 1,
+          detail:"新的一天新的开始！人生前方总有希望！"
         },
         {
           name: "用户4",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic4.jpg"),
           vip: false,
-          gender: 2
+          gender: 2,
+          detail:"新的一天新的开始！人生前方总有希望！"
         },
         {
           name: "用户5",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic5.jpg"),
           vip: true,
-          gender: 1
+          gender: 1,
+          detail:"新的一天新的开始！人生前方总有希望！"
         }
       ],
       maleImg: require("../../../assets/img/home/aboutCnt/attention/male.png"),
@@ -93,7 +98,7 @@ export default {
     flex-direction: column;
     justify-items: center;
     // align-items: center;
-  
+
     .list_item {
       flex: 0 0 auto;
       margin: 4px 0;

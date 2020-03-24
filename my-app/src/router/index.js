@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 17:54:20
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 20:01:21
+ * @LastEditTime: 2020-03-24 16:20:55
  * @Description: 路由
  */
 import Vue from 'vue'
@@ -25,7 +25,7 @@ const Compose = resolve => require(["@/pages/homePage/momentCnt/Compose.vue"], r
 // 个人主页模块
 const AboutFirstPage = resolve => require(["@/pages/homePage/aboutCnt/FirstPage.vue"], resolve)
 const Footprint = resolve => require(["@/pages/homePage/aboutCnt/Footprint.vue"], resolve)
-const Moment = resolve => require(["@/pages/homePage/aboutCnt/Moment.vue"], resolve)
+const OneMoment = resolve => require(["@/pages/homePage/aboutCnt/Moment.vue"], resolve)
 const Feedback = resolve => require(["@/pages/homePage/aboutCnt/Feedback.vue"], resolve)
 const Attention = resolve => require(["@/pages/homePage/aboutCnt/Attention.vue"], resolve)
 
@@ -110,9 +110,9 @@ const routes = [
           },
           {
             path: '/home/about/moment',
-            name: 'moment',
+            name: 'onemoment',
             meta: { title: "行走-动态" },
-            component: Moment,
+            component: OneMoment,
           },
           {
             path: '/home/about/footprint',
