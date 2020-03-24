@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:10:28
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 16:20:09
+ * @LastEditTime: 2020-03-24 18:30:36
  * @Description: 个人主页的首页
  -->
 <template>
@@ -63,7 +63,7 @@ export default {
         {
           title: "我的二维码",
           img: require("../../../assets/img/home/aboutCnt/qrcode.png"),
-          to: ''
+          to: 'qrcode'
         },
         {
           title: "帮助与反馈",

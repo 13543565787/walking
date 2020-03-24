@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 17:54:20
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 16:20:55
+ * @LastEditTime: 2020-03-24 18:32:06
  * @Description: 路由
  */
 import Vue from 'vue'
@@ -28,6 +28,8 @@ const Footprint = resolve => require(["@/pages/homePage/aboutCnt/Footprint.vue"]
 const OneMoment = resolve => require(["@/pages/homePage/aboutCnt/Moment.vue"], resolve)
 const Feedback = resolve => require(["@/pages/homePage/aboutCnt/Feedback.vue"], resolve)
 const Attention = resolve => require(["@/pages/homePage/aboutCnt/Attention.vue"], resolve)
+const QRcode = resolve => require(["@/pages/homePage/aboutCnt/QRcode.vue"], resolve)
+
 
 Vue.use(VueRouter)
 
@@ -129,8 +131,14 @@ const routes = [
           {
             path: '/home/about/attention',
             name: 'attention',
-            meta: { title: "行走-帮助与反馈" },
+            meta: { title: "行走-关注与粉丝" },
             component: Attention,
+          },
+          {
+            path: '/home/about/qrcode',
+            name: 'qrcode',
+            meta: { title: "行走-二维码" },
+            component: QRcode,
           },
           {
             path: '/home/about*',
