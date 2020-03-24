@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:46
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 12:48:58
+ * @LastEditTime: 2020-03-24 14:14:56
  * @Description: 写动态（类似于发朋友圈）
  -->
 <template>
@@ -60,13 +60,7 @@ export default {
       files: "", // 文件列表
       photoImg: require("../../../assets/img/home/momentCnt/photo.png"),
       // 图片url列表
-      dataUrls: [
-        require("../../../assets/img/home/momentCnt/photo.png"),
-        require("../../../assets/img/home/momentCnt/photo.png"),
-        require("../../../assets/img/home/momentCnt/photo.png"),
-        require("../../../assets/img/home/momentCnt/photo.png"),
-        require("../../../assets/img/login/firstPage.jpg")
-      ]
+      dataUrls: [],
     };
   },
   methods: {
