@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:46
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 01:12:53
+ * @LastEditTime: 2020-03-24 12:48:58
  * @Description: 写动态（类似于发朋友圈）
  -->
 <template>
@@ -16,15 +16,35 @@
     </div>
 
     <div class="photo_show">
-      <img :src="dataUrl" alt />
+      <ul class="img_list">
+        <li class="list_item" v-for="(item,index) in dataUrls" :key="index">
+          <div class="img_wrapper">
+            <!-- <img ref="img" :style="{height:`${img_width}px`}" :src="item" alt /> -->
+            <img :src="item" alt />
+            <button class="delete_btn" @click="deleteHandle(index)"></button>
+          </div>
+        </li>
+        <li class="list_item" v-show="img_length < 9">
+          <label class="img_wrapper label_add" for="selectphoto"></label>
+        </li>
+      </ul>
+      <!-- <img :src="dataUrl" alt /> -->
     </div>
 
-    <div class="bottom">
+    <div class="bottom_content">
       <div class="selectphoto">
         <label for="selectphoto" class="select_label">
           <img :src="photoImg" alt />
         </label>
-        <input accept="image/*" ref="fileInput" id="selectphoto" @change="selectHandle" type="file" />
+        <input
+          accept="image/*"
+          ref="fileInput"
+          id="selectphoto"
+          multiple
+          @change="selectHandle"
+          type="file"
+        />
+        <span class="img_tips">最多9张照片哦！</span>
       </div>
       <span class="length">{{ txt_length }}</span>
     </div>
@@ -37,9 +57,16 @@ export default {
   data() {
     return {
       input_txt: "",
-      file: "",
-      dataUrl: "",
-      photoImg: require("../../../assets/img/home/momentCnt/photo.png")
+      files: "", // 文件列表
+      photoImg: require("../../../assets/img/home/momentCnt/photo.png"),
+      // 图片url列表
+      dataUrls: [
+        require("../../../assets/img/home/momentCnt/photo.png"),
+        require("../../../assets/img/home/momentCnt/photo.png"),
+        require("../../../assets/img/home/momentCnt/photo.png"),
+        require("../../../assets/img/home/momentCnt/photo.png"),
+        require("../../../assets/img/login/firstPage.jpg")
+      ]
     };
   },
   methods: {
@@ -47,9 +74,18 @@ export default {
       console.log(value);
       let fileInput = this.$refs.fileInput;
       // 通过DOM取文件数据
-      this.file = fileInput.files[0];
-      this.imgPreview(this.file);
-      console.log(this.file);
+      this.files = fileInput.files;
+
+      if (this.files.length + this.img_length > 9) {
+        console.log("不行！");
+        return;
+      }
+
+      this.files.forEach((file, index) => {
+        this.imgPreview(this.files[index]);
+      });
+
+      console.log(this.files);
     },
     imgPreview(file) {
       let self = this;
@@ -62,15 +98,23 @@ export default {
         reader.readAsDataURL(file);
         // 读取成功后的回调
         reader.onloadend = function() {
-          self.dataUrl = this.result;
-          console.log(this.result);
+          self.dataUrls.push(this.result);
+          // console.log(this.result);
         };
       }
+    },
+    deleteHandle(index){
+      this.dataUrls.splice(index,1);
     }
   },
   computed: {
     txt_length() {
       return this.input_txt.length;
+    },
+    img_length() {
+      // 最多上传9个图片
+      let length = this.dataUrls.length;
+      return length;
     }
   },
   mounted() {}
@@ -95,7 +139,7 @@ export default {
       font-size: 21px;
       letter-spacing: 2px;
     }
-    button{
+    button {
       font-size: 17px;
       color: #fafafa;
       padding: 4px 9px;
@@ -117,16 +161,13 @@ export default {
       color: #444;
       resize: none;
       font-size: 20px;
+      border-bottom: 1px solid #ccc;
+
       // line-height: ;
     }
-    // textarea:focus {
-    //   outline-offset: -2px;
-    // }
-    // input::-webkit-input-placeholder,
     textarea::-webkit-input-placeholder {
       color: #b3b3b3;
       vertical-align: baseline;
-
       line-height: normal;
     }
   }
@@ -134,22 +175,103 @@ export default {
   .photo_show {
     width: 100%;
     height: auto;
+    padding: 0 14px;
+    box-sizing: border-box;
+    margin-bottom: 44px;
+    .img_list {
+      width: 100%;
+      height: auto;
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      li.list_item {
+        flex-basis: 32.4%;
+        box-sizing: border-box;
+        margin: 0.4%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        // 添加图片的图标
+        label.label_add {
+          border: 1px dashed #cbd1d7;
+          position: relative;
+          &::after,
+          &::before {
+            display: block;
+            content: "";
+            background-color: #ccc;
+            position: absolute;
+            left: calc(50% - 1px);
+            top: calc(50% - 22px);
+            width: 2px;
+            height: 44px;
+          }
+          &::before {
+            transform: rotate(90deg);
+          }
+        }
+        .img_wrapper {
+          position: relative;
+          padding-bottom: 100%;
+          width: 100%;
+          height: 0;
+          img {
+            position: absolute;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          button.delete_btn {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            background-color: #444;
+            width: 24px;
+            height: 24px;
+            opacity: 0.44;
+            &::after,
+            &::before {
+              display: block;
+              content: "";
+              background-color: #fafafa;
+              position: absolute;
+              left: calc(50% - 1px);
+              top: calc(50% - 9px);
+              width: 2px;
+              height: 17px;
+              transform: rotate(45deg);
+              border-radius: 2px;
+            }
+            &::before {
+              transform: rotate(135deg);
+            }
+          }
+        }
+      }
+    }
     img {
       width: 100%;
       height: auto;
     }
   }
-  .bottom {
+  .bottom_content {
     position: fixed;
     bottom: 46px;
     width: 100%;
     box-sizing: border-box;
-    padding: 14px;
+    padding: 0 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .selectphoto {
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       label.select_label {
         width: 44px;
         height: 44px;
@@ -164,7 +286,12 @@ export default {
       input {
         display: none;
       }
+      span.img_tips {
+        font-size: 14px;
+        color: #444;
+      }
     }
+
     span.length {
       color: #111;
       font-size: 21px;

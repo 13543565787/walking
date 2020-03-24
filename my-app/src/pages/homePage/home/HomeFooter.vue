@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-22 11:28:48
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 19:39:00
+ * @LastEditTime: 2020-03-24 11:10:33
  * @Description: 
  -->
 
@@ -91,7 +91,8 @@ export default {
   width: 100%;
   height: 46px;
   background-color: #fff;
-  box-shadow: 0px 0px 10px 0px #88888894;
+  box-shadow: 0px -4px 10px 0px #e1d9d9;
+  -webkit-box-shadow: 0px -4px 10px 0px #e1d9d9;
   ul.nav_list {
     width: 100%;
     height: 100%;
