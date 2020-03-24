@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 15:58:22
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 18:52:59
+ * @LastEditTime: 2020-03-24 19:52:04
  * @Description: 
  -->
 <template>
@@ -34,7 +34,9 @@
       <span>问题描述：</span>
       <textarea placeholder="请写下您的问题描述..." name="feedback_detail" id></textarea>
     </div>
-    <botton class="submit_btn">提交反馈</botton>
+    <div class="btn_wrapper">
+      <button class="submit_btn">提交反馈</button>
+    </div>
   </div>
 </template>
 
@@ -124,7 +126,7 @@ export default {
       height: 90px;
     }
   }
-  .submit_btn{
+  .submit_btn {
     margin: 44px auto 0;
     display: block;
     width: 210px;

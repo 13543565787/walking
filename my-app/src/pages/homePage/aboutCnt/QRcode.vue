@@ -2,14 +2,14 @@
  * @Autor: hjz
  * @Date: 2020-03-24 18:30:11
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 18:53:37
+ * @LastEditTime: 2020-03-24 19:48:57
  * @Description: 
  -->
 <template>
   <div class="qrcode_wrapper">
     <h2>二维码</h2>
     <div class="img_wrapper">
-      <!-- <img :src="qrcode" alt /> -->
+      <img :src="qrcode" alt />
     </div>
   </div>
 </template>
@@ -30,10 +30,7 @@ export default {
 
 <style scoped lang="less">
 .qrcode_wrapper {
-  width: 100%;
-  height: 100vh;
-  padding: 14px;
-  box-sizing: border-box;
+  padding: 0 14px;
   h2 {
     padding: 14px;
     font-size: 24px;
@@ -45,7 +42,8 @@ export default {
     width: 100%;
     img {
       width: 100%;
-      // height: auto;
+      height: auto;
     }
   }
 }
+</style>

@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:30
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 16:12:54
+ * @LastEditTime: 2020-03-24 20:00:08
  * @Description: 首页是动态！！！
  -->
 <template>
@@ -34,7 +34,7 @@
           </div>
           <div class="btn_wrapper">
             <button @click="likeHandle(index)" class="like_btn" :class="{active:item.like}">
-              <img :src="likeImg" alt />
+              <img :src="item.like ? islikeImg : likeImg" alt />
               <span>点赞</span>
             </button>
             <button @click="commentHandle(index)" class="comment_btn">
@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       curComment: -1,
-      timer:'',
+      timer: "",
       moment_list: [
         {
           username: "用户1",
@@ -176,6 +176,7 @@ export default {
       femaleImg: require("../../../assets/img/home/aboutCnt/attention/female.png"),
       vipImg: require("../../../assets/img/home/aboutCnt/attention/vip.png"),
       likeImg: require("../../../assets/img/home/momentCnt/like.png"),
+      islikeImg: require("../../../assets/img/home/momentCnt/islike.png"),
       commentImg: require("../../../assets/img/home/momentCnt/comment.png"),
       linkImg: require("../../../assets/img/home/momentCnt/link.png")
     };
@@ -188,21 +189,22 @@ export default {
       this.$set(this.moment_list, index, { ...newObj });
     },
     commentHandle(index) {
-      this.timer = setTimeout(()=>{
+      this.timer = setTimeout(() => {
         this.$refs.input[index].focus();
-      },300)
+      }, 300);
       this.curComment = index;
     },
-    sentHandle(index){
+    sentHandle(index) {
       console.log("!!!");
       console.log();
       let content = this.$refs.input[index].value;
-      if(!content){
+      if (!content) {
         return;
       }
       let newObj = this.moment_list[index];
       newObj.comment.push({
-        user: "何处惹尘埃", content: content, 
+        user: "何处惹尘埃",
+        content: content
       });
       this.$set(this.moment_list, index, { ...newObj });
     },
@@ -339,26 +341,27 @@ export default {
             }
           }
           .like_btn.active {
-            transform: scale(1.1);
+            // transform: scale(1.1);
+            
             img {
-              background-color: red;
+              // background-color: red;
             }
           }
         }
         .comment_input {
           width: 100%;
-          padding: 4px 14px;
           box-sizing: border-box;
           background-color: #fafafa;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 14px;
           // display: none;
           visibility: hidden;
           height: 0;
           overflow: hidden;
           &.active {
+            padding: 4px 14px;
+            margin-bottom: 14px;
             height: 100%;
             visibility: visible;
             display: flex;
