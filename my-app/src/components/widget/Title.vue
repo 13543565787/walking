@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-25 12:17:09
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-25 12:54:26
+ * @LastEditTime: 2020-03-25 16:07:00
  * @Description: title通用组件！
  -->
 <template>
@@ -55,9 +55,9 @@ export default {
     letter-spacing: 3px;
     font-size: 24px;
     font-weight: bold;
-    // color: #5a8c6e;
-    color: #fff;
-    -webkit-text-stroke: 1px #5a8c6e;
+    color: #5a8c6e;
+    // color: #fff;
+    // -webkit-text-stroke: 1px #5a8c6e;
     // -webkit-text-stroke: 1px #fff;
   }
   button, .logo_wrapper {

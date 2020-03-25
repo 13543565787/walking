@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:30
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-25 13:32:12
+ * @LastEditTime: 2020-03-25 16:14:11
  * @Description: 首页是动态！！！
  -->
 <template>
@@ -81,7 +81,7 @@ export default {
         {
           username: "用户1",
           picture: require("../../../assets/img/home/aboutCnt/attention/pic1.jpg"),
-          location: "广东-广州",
+          location: "日本-富士山",
           gender: 1,
           vip: true,
           like: false,
@@ -378,7 +378,7 @@ export default {
             color: #fff;
             font-size: 14px;
             letter-spacing: 2px;
-            background-color: #007ef9;
+            background-color: #5a8c6e;
             border-radius: 7px;
           }
         }

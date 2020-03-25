@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:13:50
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-25 13:02:02
+ * @LastEditTime: 2020-03-25 16:09:44
  * @Description: 
  -->
 <template>
@@ -38,7 +38,7 @@ export default {
     return {
       footprint_list: [
         {
-          location: "广东-广州",
+          location: "日本-富士山",
           place: "景点A",
           time: "2020-03-23",
           picture: require("../../../assets/img/home/aboutCnt/footprint/pic1.jpg")

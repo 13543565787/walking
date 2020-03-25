@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:11:18
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-25 13:04:31
+ * @LastEditTime: 2020-03-25 16:10:22
  * @Description: 查看动态的界面，
  -->
 <template>
@@ -64,7 +64,7 @@ export default {
       },
       moment_list: [
         {
-          location: "广东-广州",
+          location: "日本-富士山",
 
           time: "2020-03-23",
           moment: {

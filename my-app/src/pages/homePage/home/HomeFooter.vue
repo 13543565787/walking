@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-22 11:28:48
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-25 12:50:47
+ * @LastEditTime: 2020-03-25 16:05:35
  * @Description: 
  -->
 
@@ -35,7 +35,7 @@ export default {
         {
           title: "行走",
           to: "walking",
-          img: require("../../../assets/img/nav/map.png")
+          img: require("../../../assets/img/nav/map.jpg")
         },
         {
           title: "动态",
