@@ -2,12 +2,13 @@
  * @Autor: hjz
  * @Date: 2020-03-23 15:58:22
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 19:52:04
+ * @LastEditTime: 2020-03-25 13:00:07
  * @Description: 
  -->
 <template>
   <div class="Feedback_wrapper">
-    <h2>反馈</h2>
+    <!-- <h2>反馈</h2> -->
+    <Title title="反馈"></Title>
     <div class="score_wrapper feedback_item">
       <span>网页评分：</span>
       <ul class="score_list">
@@ -41,8 +42,9 @@
 </template>
 
 <script>
+import Title from '@/components/widget/Title.vue';
 export default {
-  components: {},
+  components: {Title},
   data() {
     return {
       score: 4,
@@ -135,7 +137,7 @@ export default {
     color: #fff;
     text-align: center;
     box-sizing: border-box;
-    background-color: #007ef9;
+    background-color: #5a8c6e;
     font-size: 21px;
     padding: 7px 14px;
     border-radius: 24px;

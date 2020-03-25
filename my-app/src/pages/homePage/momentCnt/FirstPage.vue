@@ -2,12 +2,12 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:30
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 20:00:08
+ * @LastEditTime: 2020-03-25 12:55:32
  * @Description: 首页是动态！！！
  -->
 <template>
   <div class="MomentCnt_wrapper">
-    <h2>全部动态</h2>
+    <Title title="全部动态"></Title>
     <ul class="moment_list">
       <li class="list_item" v-for="(item,index) in moment_list" :key="index">
         <div class="item_wrapper">
@@ -70,8 +70,9 @@
 </template>
 
 <script>
+import Title from '@/components/widget/Title.vue';
 export default {
-  components: {},
+  components: {Title},
   data() {
     return {
       curComment: -1,
@@ -221,13 +222,6 @@ export default {
 .MomentCnt_wrapper {
   width: 100%;
   height: auto;
-  h2 {
-    padding: 14px;
-    font-size: 24px;
-    letter-spacing: 2px;
-    border-bottom: 1px solid #ddd;
-    color: #444;
-  }
   ul.moment_list {
     width: 100%;
     display: flex;
@@ -425,7 +419,7 @@ export default {
     position: fixed;
     bottom: 84px;
     right: 14px;
-    background-color: #1793eb;
+    background-color: #5a8c6e;
     border-radius: 50%;
     width: 64px;
     height: 64px;

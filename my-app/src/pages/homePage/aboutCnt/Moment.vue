@@ -2,13 +2,14 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:11:18
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 17:22:36
+ * @LastEditTime: 2020-03-25 13:04:31
  * @Description: 查看动态的界面，
  -->
 <template>
   <div class="Moment_wrapper">
     <AboutHeader :username="userMsg.username" :userImg="userMsg.userImg" :detail="userMsg.detail"></AboutHeader>
-    <h2>{{ !!userMsg.username?"ta的动态":"我的动态" }}</h2>
+    <!-- <h2>{{ !!userMsg.username?"ta的动态":"我的动态" }}</h2> -->
+    <Title :title="!!userMsg.username?'ta的动态':'我的动态'"></Title>
     <ul class="moment_list">
       <li class="list_item" v-for="(item,index) in moment_list" :key="index">
         <div class="item_wrapper">
@@ -47,11 +48,12 @@
 </template>
 
 <script>
+import Title from '@/components/widget/Title.vue';
 import AboutHeader from "@/pages/homePage/aboutCnt/AboutHeader";
-
 export default {
   components: {
-    AboutHeader
+    AboutHeader,
+    Title
   },
   data() {
     return {

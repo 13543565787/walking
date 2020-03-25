@@ -2,11 +2,14 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:48:51
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-21 11:13:10
+ * @LastEditTime: 2020-03-25 12:03:23
  * @Description: 
  -->
 <template>
-  <div class="FirstPage_wrapper" :style="{backgroundImage:`url(${bgImg})`}">
+  <div class="FirstPage_wrapper">
+    <div class="logo_wrapper">
+      <img :src="logoImg" alt />
+    </div>
     <div class="login_wrapper">
       <div class="title_content">
         <h2>行走</h2>
@@ -14,12 +17,12 @@
           <i class="xing">行</i>
           <i class="zou">走</i>
         </div>
-        <p>WALKING</p>
       </div>
-      <div class="btn_wrapper">
-        <router-link tag="button" class="login_btn" :to="{name:'login'}">登录/LOGIN</router-link>
-        <router-link tag="button" class="register_btn" :to="{name:'login',params:{isRegister:true}}">立即注册</router-link>
-      </div>
+      <!-- <p class="title">WALKING</p> -->
+      <p class="desc">手机地图/社交产品</p>
+    </div>
+    <div class="btn_wrapper">
+      <router-link tag="button" :to="{name:'login'}">进一步了解</router-link>
     </div>
   </div>
 </template>
@@ -29,7 +32,8 @@ export default {
   components: {},
   data() {
     return {
-      bgImg: require("../../assets/img/login/firstPage.jpg")
+      bgImg: require("../../assets/img/login/firstPage.jpg"),
+      logoImg: require("../../assets/img/login/logoImg.jpg")
     };
   },
   methods: {},
@@ -50,21 +54,37 @@ export default {
 .FirstPage_wrapper {
   width: 100%;
   height: 100%;
-  background: no-repeat right top / cover;
+  background-color: #5a8c6e;
+  // background: linear-gradient(180deg, #5a8c6e, #3a5846);
   position: relative;
+  .logo_wrapper {
+    width: 240px;
+    height: 240px;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
   .login_wrapper {
-    // background-color: #aaa;
-    width: 150px;
-    // height: 270px;
+    width: 250px;
     height: auto;
     position: absolute;
-    right: 14px;
-    top: 240px;
-    // transform: translateY(-50%);
-    color: #141414;
+    top: 340px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    color: #fafafa;
     .title_content {
+      width: 100%;
+      display: flex;
+      justify-content: center;
       .icons {
-        width: 100%;
+        width: 150px;
         display: flex;
         justify-content: space-between;
         .xing,
@@ -83,51 +103,38 @@ export default {
         font-size: 0;
         visibility: hidden;
       }
-      p {
-        font-size: 31px;
-        letter-spacing: 1px;
-        text-align: center;
-        padding-top: 4px;
-        &::after{
-          content: "";
-          display: block;
-          width: 34px;
-          height: 2px;
-          // background-color: #2997ff;
-          border-radius: 4px;
-          // background-color: #2997ff;
-          // background: linear-gradient(180deg, #2997ff,#2997ff62, #00000000);
-          // background: -webkit-linear-gradient(180deg, #2997ff,#2997ff62, #00000000);
-          
-          background: linear-gradient(-90deg, #2997ff,rgba(255, 255, 255, 0));
-          background:-moz-linear-gradient(-90deg, #2997ff,rgba(255, 255, 255, 0));
-          background:-webkit-linear-gradient(-90deg, #2997ff,rgba(255, 255, 255, 0));
-          background:-o-linear-gradient(-90deg, #2997ff,rgba(255, 255, 255, 0));
-          animation: line_animate 1.4s linear infinite;
-        }
-      }
     }
-    .btn_wrapper{
-      // background-color: #ccc;
+    p.title {
+      font-size: 31px;
+      letter-spacing: 1px;
+      text-align: center;
+      padding-top: 4px;
+    }
+    p.desc {
+      padding-top: 14px;
       width: 100%;
-      height: 120px;
-      margin-top: 24px;
-      .login_btn{
-        width: 100%;
-        height: 60px;
-        background-color: #007ef9;
-        font-size: 19px;
-        // font-weight: bold;
-        color: #fff;
-        // border: 1px solid #141414;
-        border-radius: 34px;
-      }
-      .register_btn{
-        width: 100%;
-        height: 60px;
-        font-size: 19px;
-
-      }
+      text-align: center;
+      letter-spacing: 7px;
+      font-size: 21px;
+    }
+  }
+  .btn_wrapper {
+    position: absolute;
+    top: 470px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    button {
+      display: block;
+      width: 240px;
+      height: 60px;
+      background-color: #376146;
+      font-size: 19px;
+      color: #fff;
+      border-radius: 34px;
+      letter-spacing: 2px;
     }
   }
 }

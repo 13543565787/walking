@@ -2,12 +2,13 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:13:50
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-23 20:23:22
+ * @LastEditTime: 2020-03-25 13:02:02
  * @Description: 
  -->
 <template>
   <div class="Footprint_wrapper">
-    <h2>我的足迹</h2>
+    <!-- <h2>我的足迹</h2> -->
+    <Title title="我的足迹"></Title>
     <ul class="menber_list">
       <li class="list_item" v-for="(item,index) in footprint_list" :key="index">
         <router-link tag="div" class="item_wrapper" :to="{name:'moment'}">
@@ -30,8 +31,9 @@
 </template>
 
 <script>
+import Title from '@/components/widget/Title.vue';
 export default {
-  components: {},
+  components: {Title},
   data() {
     return {
       footprint_list: [

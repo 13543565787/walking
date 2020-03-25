@@ -2,12 +2,13 @@
  * @Autor: hjz
  * @Date: 2020-03-23 16:03:12
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 17:13:45
+ * @LastEditTime: 2020-03-25 12:57:30
  * @Description: 
  -->
 <template>
   <div class="Attention_wrapper">
-    <h2>{{ isAttention ? "关注列表":"粉丝列表"}}</h2>
+    <!-- <h2>{{ isAttention ? "关注列表":"粉丝列表"}}</h2> -->
+    <Title :title="isAttention ? '关注列表':'粉丝列表'"></Title>
     <ul class="menber_list">
       <li class="list_item" v-for="(item,index) in menber_list" :key="index">
         <router-link :to="{name:'onemoment',params:{username:item.name,userImg:item.picture,detail:item.detail}}" tag="div" class="item_wrapper">
@@ -22,8 +23,9 @@
 </template>
 
 <script>
+import Title from '@/components/widget/Title.vue';
 export default {
-  components: {},
+  components: {Title},
   data() {
     return {
       isAttention: false,

@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-18 18:22:22
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-21 20:52:32
+ * @LastEditTime: 2020-03-25 12:12:25
  * @Description: 登录注册框！
  -->
 <template>
@@ -86,6 +86,7 @@ export default {
       isRegister: false, // 判断是登录还是注册框，初始化为登录框
       bgImg: require("../../assets/img/login/firstPage.jpg"),
       logoImg: require("../../assets/img/login/logo.png"),
+      logoImg: require("../../assets/img/login/logoImg.jpg"),
       bgImg: require("../../assets/img/login/firstPage.jpg"),
       loginImg: require("../../assets/img/login/login.png"),
       // 登录输入框
@@ -222,7 +223,7 @@ export default {
     width: 100%;
     height: 170px;
     position: relative;
-    background-image: linear-gradient(180deg, #66b7f9, #1c82d4);
+    background-image: linear-gradient(180deg, #5a8c6e 54%, #508164);
 
     .logo_wrapper {
       width: 64px;
@@ -287,7 +288,7 @@ export default {
     }
     .title {
       font-size: 24px;
-      color: #1c82d4;
+      color: #5a8c6e;
       font-weight: bold;
       margin: 34px 0 14px;
     }
@@ -307,7 +308,7 @@ export default {
       justify-content: center;
       margin: 24px 0;
       &.active {
-        background-color: #2997ff;
+        background-color: #5a8c6e;
         img {
           animation: login_animate 1.4s infinite linear;
         }
@@ -327,7 +328,7 @@ export default {
       font-size: 21px;
       letter-spacing: 3px;
       &.active {
-        background-color: #1c82d4;
+        background-color: #5a8c6e;
       }
     }
     .toLogin{
@@ -335,8 +336,8 @@ export default {
       font-size: 14px;
       button{
         font-size: 17px;
-        color: #1c82d4;
-        border-bottom: 1px solid #1c82d4;
+        color: #5a8c6e;
+        border-bottom: 1px solid #5a8c6e;
       }
     }
     .register_wrapper {
@@ -351,9 +352,9 @@ export default {
       }
       .register_link {
         font-size: 19px;
-        border-bottom: 1px solid #007ef9;
+        border-bottom: 1px solid #5a8c6e;
         padding: 4px 0;
-        color: #007ef9;
+        color: #5a8c6e;
       }
     }
   }

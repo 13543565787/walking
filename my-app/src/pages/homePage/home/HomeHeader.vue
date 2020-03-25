@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-22 11:28:12
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-22 15:00:56
+ * @LastEditTime: 2020-03-25 12:15:23
  * @Description: 
  -->
 
@@ -67,7 +67,7 @@ export default {
     height: 44px;
     margin: 0 14px;
     line-height: 44px;
-    color: #0084ff;
+    color: #5a8c6e;
     font-size: 24px;
     letter-spacing: 4px;
   }
