@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:30
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-25 12:55:32
+ * @LastEditTime: 2020-03-25 13:32:12
  * @Description: 首页是动态！！！
  -->
 <template>
@@ -214,7 +214,9 @@ export default {
     }
   },
   computed: {},
-  mounted() {}
+  mounted() {
+    this.$store.dispatch("setCurCntIndexFun", 1);
+  }
 };
 </script>
 

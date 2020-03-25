@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 11:10:28
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 18:30:36
+ * @LastEditTime: 2020-03-25 13:32:40
  * @Description: 个人主页的首页
  -->
 <template>
@@ -78,7 +78,9 @@ export default {
   },
   methods: {},
   computed: {},
-  mounted() {}
+  mounted() {
+    this.$store.dispatch("setCurCntIndexFun", 2);
+  }
 };
 </script>
 
@@ -112,7 +114,7 @@ export default {
         justify-content: center;
         .number {
           font-size: 15px;
-          color: #111;
+          color: #5a8c6e;
         }
         .tab {
           font-size: 14px;

@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-23 19:49:46
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-24 14:14:56
+ * @LastEditTime: 2020-03-25 13:22:32
  * @Description: 写动态（类似于发朋友圈）
  -->
 <template>
@@ -155,9 +155,7 @@ export default {
       color: #444;
       resize: none;
       font-size: 20px;
-      border-bottom: 1px solid #ccc;
-
-      // line-height: ;
+      // border-bottom: 1px solid #ccc;
     }
     textarea::-webkit-input-placeholder {
       color: #b3b3b3;
@@ -174,6 +172,7 @@ export default {
     margin-bottom: 44px;
     .img_list {
       width: 100%;
+      padding: 0 4px;
       height: auto;
       display: flex;
       // justify-content: center;

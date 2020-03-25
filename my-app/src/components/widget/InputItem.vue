@@ -2,7 +2,7 @@
  * @Autor: hjz
  * @Date: 2020-03-20 15:10:10
  * @LastEditors: hjz
- * @LastEditTime: 2020-03-20 17:49:23
+ * @LastEditTime: 2020-03-25 13:15:46
  * @Description: input 组件
  -->
 <template>
@@ -111,6 +111,7 @@ export default {
     font-size: 21px;
     color: #141414;
     caret-color: #1c82d4;
+    -webkit-appearance: none;
     &::-webkit-input-placeholder {
       /* Chrome/Opera/Safari */
       color: #6a6f77;
